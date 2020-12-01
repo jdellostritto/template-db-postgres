@@ -1,4 +1,4 @@
-.PHONY: image delete
+.PHONY: image delete kube-apply kube-delete
 
 IMAGE ?= acme.io/postgres
 
@@ -11,3 +11,9 @@ image:
 
 delete:
 	docker image rm $(IMAGE)
+
+kube-apply:
+	kubectl apply -f ./kubernetes/kubernetes-postgres.yml
+	
+kube-delete:
+	kubectl delete -f ./kubernetes/kubernetes-postgres.yml
